@@ -19,6 +19,8 @@ Each value supports:
   - architecture         (optional) : x86_64 or arm64 (default: x86_64)
   - environment_variables(optional) : Map of env vars (default: {})
   - log_retention_days   (optional) : CloudWatch log retention days (default: 14)
+  - domain_name          (optional) : Custom domain name for the API Gateway (default: "")
+  - acm_certificate_arn  (optional) : ACM certificate ARN for the custom domain (default: "")
 EOT
   type = map(object({
     ecr_image_uri         = string
@@ -27,6 +29,8 @@ EOT
     architecture          = optional(string, "x86_64")
     environment_variables = optional(map(string), {})
     log_retention_days    = optional(number, 14)
+    domain_name           = optional(string, "")
+    acm_certificate_arn   = optional(string, "")
   }))
 }
 

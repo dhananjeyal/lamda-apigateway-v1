@@ -65,6 +65,8 @@ module "api_gateway" {
   api_name             = "${each.key}-http-api"
   lambda_invoke_arn    = module.lambda[each.key].invoke_arn
   lambda_function_name = module.lambda[each.key].function_name
+  domain_name          = each.value.domain_name
+  acm_certificate_arn  = each.value.acm_certificate_arn
 
   tags = merge(var.common_tags, {
     Function = each.key

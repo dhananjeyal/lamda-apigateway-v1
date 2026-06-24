@@ -37,3 +37,22 @@ output "api_gateway_ids" {
   description = "IDs of all deployed API Gateways"
   value       = { for k, v in module.api_gateway : k => v.api_id }
 }
+
+# -------------------------------------------------------
+# Custom domain outputs (only populated when domain_name
+# is set for a given Lambda function entry)
+# -------------------------------------------------------
+output "api_gateway_custom_domains" {
+  description = "Custom domain names configured for each API Gateway (empty string if not set)"
+  value       = { for k, v in module.api_gateway : k => v.custom_domain_name }
+}
+
+output "api_gateway_custom_domain_targets" {
+  description = "DNS target (CNAME value) for each API Gateway custom domain. Point your DNS record here."
+  value       = { for k, v in module.api_gateway : k => v.custom_domain_target }
+}
+
+output "api_gateway_custom_domain_hosted_zone_ids" {
+  description = "Route 53 hosted zone IDs for each API Gateway regional endpoint (for alias records)"
+  value       = { for k, v in module.api_gateway : k => v.custom_domain_hosted_zone_id }
+}

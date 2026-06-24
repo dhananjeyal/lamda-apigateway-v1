@@ -18,3 +18,15 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "domain_name" {
+  description = "Custom domain name for the API Gateway (e.g. gotenberg.example.com). Leave empty to skip custom domain creation."
+  type        = string
+  default     = ""
+}
+
+variable "acm_certificate_arn" {
+  description = "ARN of the ACM certificate for the custom domain. Required when domain_name is set."
+  type        = string
+  default     = ""
+}
